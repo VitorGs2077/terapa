@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/cadastro.dart';
-import 'package:terapa/main2.dart';
+import 'package:terapa/login.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
 void main() {
   runApp(MyApp());
 }
-
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

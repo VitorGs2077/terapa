@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/main.dart';
-import 'package:terapa/main2.dart';
+import 'package:terapa/login.dart';
 class cadastro extends StatefulWidget {
   const cadastro({super.key});
   @override

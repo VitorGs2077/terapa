@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/cadastro.dart';
 import 'package:terapa/main.dart';
-void main() => runApp(login());
 
-class login extends StatelessWidget {
-  const login({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: TelaLogin());
-  }
-}
 class TelaLogin extends StatefulWidget {
   const TelaLogin({super.key});
 
