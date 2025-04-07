@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:terapa/cadastro.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:terapa/cadastro.dart.txt';
 import 'package:terapa/main.dart';
 
 class TelaLogin extends StatefulWidget {
@@ -10,18 +13,24 @@ class TelaLogin extends StatefulWidget {
 }
 
 class _TelaLoginState extends State<TelaLogin> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   TextStyle style = TextStyle(
     fontFamily: "Montserrat", 
     fontSize: 20, 
     color: Colors.black);
+  
   @override
   Widget build(BuildContext context) {
     final currentWidth = MediaQuery.of(context).size.width;
     final currentHeight = MediaQuery.of(context).size.height;
 
     final emailField = FractionallySizedBox(
+
       widthFactor: 0.7,
       child: TextField(
+        controller: _emailController,
         obscureText: false,
         style: style,
         decoration: InputDecoration(
@@ -39,6 +48,7 @@ class _TelaLoginState extends State<TelaLogin> {
     final passwordField = FractionallySizedBox(
       widthFactor: 0.7,
       child: TextField(
+        controller: _passwordController,
         obscureText: true,
         style: style,
         decoration: InputDecoration(
@@ -56,11 +66,47 @@ class _TelaLoginState extends State<TelaLogin> {
       widthFactor: 0.6,
       child:ButtonTheme(
         child: ElevatedButton(
-          onPressed: (){
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder: (context) => MyHomePage())
-            );
+          onPressed: () async {
+            String email = _emailController.text;
+            String password = _passwordController.text;
+            if(email.isEmpty || password.isEmpty){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Preencha todos os campos!"))
+              );
+            }else{
+              if (email.contains('.com') && email.contains('@')) {
+                final directory = await getApplicationDocumentsDirectory();
+                final senhaPath = '${directory.path}/senha.txt';
+                final arquivoSenha = File(senhaPath);
+                final emailPath = '${directory.path}/email.txt';
+                final arquivoEmail = File(emailPath);
+                if (await arquivoSenha.exists() && await arquivoEmail.exists()) {
+                  String senhaContent = await arquivoSenha.readAsString();
+                  String emailContent = await arquivoEmail.readAsString();
+                  if (senhaContent == password && emailContent == email) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Login realizado com sucesso!"))
+                    );
+                    Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => MyHomePage())
+                );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Email ou senha inválidos! 1"))
+                    );
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Email ou senha inválidos! 2"))
+                  );
+                }
+              } else{
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Email ou senha inválidos! 3"))
+                );
+              }
+            }
           },
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(Colors.white),

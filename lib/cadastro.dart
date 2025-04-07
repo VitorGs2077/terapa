@@ -1,12 +1,19 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:terapa/main.dart';
 import 'package:terapa/login.dart';
+import 'package:path_provider/path_provider.dart';
 class cadastro extends StatefulWidget {
   const cadastro({super.key});
   @override
   State<cadastro> createState() => _cadastroState();
 }
 class _cadastroState extends State<cadastro> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _nomeController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
   TextStyle style = TextStyle(
     fontFamily: "Montserrat", 
     fontSize: 20, color: Colors.black);
@@ -16,8 +23,10 @@ class _cadastroState extends State<cadastro> {
     final currentHeight = MediaQuery.of(context).size.height;
 
     final emailField = FractionallySizedBox(
+      
       widthFactor: 0.7,
       child: TextField(
+        controller: _emailController,
         obscureText: false,
         style: style,
         decoration: InputDecoration(
@@ -34,6 +43,7 @@ class _cadastroState extends State<cadastro> {
     final nomeField = FractionallySizedBox(
       widthFactor: 0.7,
       child: TextField(
+        controller: _nomeController,
         obscureText: false,
         style: style,
         decoration: InputDecoration(
@@ -51,6 +61,7 @@ class _cadastroState extends State<cadastro> {
     final passwordField = FractionallySizedBox(
       widthFactor: 0.7,
       child: TextField(
+        controller: _passwordController,
         obscureText: true,
         style: style,
         decoration: InputDecoration(
@@ -67,6 +78,7 @@ class _cadastroState extends State<cadastro> {
     final confirmPasswordField = FractionallySizedBox(
       widthFactor: 0.7,
       child: TextField(
+        controller: _confirmPasswordController,
         obscureText: true,
         style: style,
         decoration: InputDecoration(
@@ -84,11 +96,35 @@ class _cadastroState extends State<cadastro> {
       widthFactor: 0.6,
       child:ButtonTheme(
         child: ElevatedButton(
-          onPressed: (){
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder: (context) => MyHomePage())
-            );
+          onPressed: () async {
+            String email = _emailController.text;
+            String password = _passwordController.text;
+            String nome = _nomeController.text;
+            String confirmPassword = _confirmPasswordController.text;
+            if(email.isEmpty || password.isEmpty || nome.isEmpty || confirmPassword.isEmpty){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Preencha todos os campos!"))
+              );
+            }else{
+              if (email.contains('.com') && email.contains('@') && password == confirmPassword) {
+                // Save the password to a file for verification later
+                final directory = await getApplicationDocumentsDirectory();
+                final senhaPath = '${directory.path}/senha.txt';
+                final file1 = File(senhaPath);
+                final emailPath = '${directory.path}/email.txt';
+                final file2 = File(emailPath);
+                await file1.writeAsString(password);
+                await file2.writeAsString(email);
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => MyHomePage())
+                );
+              } else{
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Email ou senha inválidos!"))
+                );
+              }
+            }
           },
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(Colors.white),

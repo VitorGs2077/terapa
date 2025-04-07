@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapa/cadastro.dart';
+import 'package:terapa/cadastro.dart.txt';
 import 'package:terapa/login.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
