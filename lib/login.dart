@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:terapa/cadastro.dart.txt';
+import 'package:terapa/cadastro.dart';
 import 'package:terapa/main.dart';
 
 class TelaLogin extends StatefulWidget {

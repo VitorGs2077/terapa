@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:terapa/cadastro.dart.txt';
+import 'package:path_provider/path_provider.dart';
+import 'package:terapa/cadastro.dart';
 import 'package:terapa/login.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
@@ -31,58 +34,83 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   get icon => null;
 
-  @override
+ @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-        colors: [Color.fromARGB(158, 19, 130, 155), Color.fromARGB(237, 108, 171, 124)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-          ),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.white),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat, color: Colors.white),
-              label: 'Papo Cabeça',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => cadastro()),
-                  );
-                },
-                child: Icon(Icons.search, color: Colors.white),
+    return FutureBuilder<Directory>(
+      future: getApplicationDocumentsDirectory(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return const Center(child: Text("Erro ao acessar diretório"));
+        } else if (snapshot.hasData) {
+          final directory = snapshot.data!;
+          final nomePath = '${directory.path}/nome.txt';
+          final file3 = File(nomePath);
+
+          // Leitura assíncrona fora do build (não recomendado fazer dentro)
+          file3.readAsString().then((nomeContent) {
+            print(nomeContent);
+          });
+
+          return Scaffold(
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(158, 19, 130, 155),
+                    Color.fromARGB(237, 108, 171, 124)
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
-              label: 'Pesquisa',
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TelaLogin()),
-                  );
-                },
-                child: Icon(Icons.person, color: Colors.white),
+              child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home, color: Colors.white),
+                    label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.chat, color: Colors.white),
+                    label: 'Papo Cabeça',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => cadastro()),
+                        );
+                      },
+                      child: Icon(Icons.search, color: Colors.white),
+                    ),
+                    label: 'Pesquisa',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TelaLogin()),
+                        );
+                      },
+                      child: Icon(Icons.person, color: Colors.white),
+                    ),
+                    label: 'Perfil',
+                  ),
+                ],
               ),
-              label: 'Perfil',
             ),
-          ],
-        )
-      ),
+          );
+        } else {
+          return const Center(child: Text("Diretório não encontrado"));
+        }
+      },
     );
   }
 }

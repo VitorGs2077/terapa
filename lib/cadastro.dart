@@ -107,14 +107,19 @@ class _cadastroState extends State<cadastro> {
               );
             }else{
               if (email.contains('.com') && email.contains('@') && password == confirmPassword) {
-                // Save the password to a file for verification later
                 final directory = await getApplicationDocumentsDirectory();
+
                 final senhaPath = '${directory.path}/senha.txt';
                 final file1 = File(senhaPath);
+                await file1.writeAsString(password);
+
                 final emailPath = '${directory.path}/email.txt';
                 final file2 = File(emailPath);
-                await file1.writeAsString(password);
                 await file2.writeAsString(email);
+
+                final nomePath = '${directory.path}/nome.txt';
+                final file3 = File(nomePath);
+                await file3.writeAsString(nome);
                 Navigator.push(
                   context, 
                   MaterialPageRoute(builder: (context) => MyHomePage())
