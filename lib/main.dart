@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/cadastro.dart';
@@ -46,15 +45,36 @@ class _MyHomePageState extends State<MyHomePage> {
         } else if (snapshot.hasData) {
           final directory = snapshot.data!;
           final nomePath = '${directory.path}/nome.txt';
-          final file3 = File(nomePath);
+          final file = File(nomePath);
 
-          // Leitura assíncrona fora do build (não recomendado fazer dentro)
-          file3.readAsString().then((nomeContent) {
-            print(nomeContent);
-          });
+          return FutureBuilder<String>(
+          future: file.readAsString(),
+          builder: (context, nomeSnapshot) {
+            if (nomeSnapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (nomeSnapshot.hasError || !nomeSnapshot.hasData) {
+              return const Center(child: Text("Erro ao ler nome do usuário"));
+            }
+
+            final nomeUsuario = nomeSnapshot.data!;
 
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            appBar: AppBar(
+              title: Text('Bem Vindo $nomeUsuario!'),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(158, 19, 130, 155),
+                      Color.fromARGB(237, 108, 171, 124),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
+            ),
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -101,16 +121,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: Icon(Icons.person, color: Colors.white),
                     ),
-                    label: 'Perfil',
-                  ),
-                ],
+                    label: "$nomeUsuario ",
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        } else {
-          return const Center(child: Text("Diretório não encontrado"));
-        }
-      },
-    );
-  }
+            );
+          },
+        );
+      } else {
+        return const Center(child: Text("Diretório não encontrado"));
+      }
+    },
+  );
+}
 }

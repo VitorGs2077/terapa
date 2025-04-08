@@ -143,7 +143,7 @@ class _TelaLoginState extends State<TelaLogin> {
             children: [
               SizedBox(height: currentHeight*0.1),
               FractionallySizedBox(
-                widthFactor: 0.8, 
+                widthFactor: 0.8,
                 child: Image.asset("imagens/logo_terapa.png")
                 ),
               SizedBox(height: currentHeight*0.065),
@@ -165,7 +165,7 @@ class _TelaLoginState extends State<TelaLogin> {
                   child: Text(
                     "Cadastre-se", 
                     style: TextStyle(
-                      color: const Color.fromARGB(255, 255, 230, 0), 
+                      color: const Color.fromARGB(255, 0, 51, 0), 
                       fontWeight: FontWeight.bold
                     )
                   )
