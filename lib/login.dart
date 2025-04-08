@@ -93,17 +93,17 @@ class _TelaLoginState extends State<TelaLogin> {
                 );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Email ou senha inválidos! 1"))
+                      SnackBar(content: Text("Email ou senha incorretos!"))
                     );
                   }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Email ou senha inválidos! 2"))
+                    SnackBar(content: Text("Login não encontrado!"))
                   );
                 }
               } else{
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Email ou senha inválidos! 3"))
+                  SnackBar(content: Text("Email inválidos!"))
                 );
               }
             }
