@@ -61,6 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             appBar: AppBar(
+              automaticallyImplyLeading: false,
+              centerTitle: true,
               title: Text('Bem Vindo $nomeUsuario!'),
               flexibleSpace: Container(
                 decoration: BoxDecoration(
