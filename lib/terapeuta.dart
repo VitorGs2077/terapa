@@ -1,15 +1,14 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:terapa/cadastro.dart';
 import 'package:terapa/login.dart';
-import 'package:terapa/pesquisa.dart';
+import 'package:terapa/main.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
-void main() {
-  runApp(MyApp());
-}
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Terapeuta extends StatelessWidget {
+  const Terapeuta({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +20,20 @@ class MyApp extends StatelessWidget {
       ),
       home: TelaLogin(),
     );
+    }
   }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class TelaTerapeuta extends StatefulWidget {
+  const TelaTerapeuta({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<TelaTerapeuta> createState() => _TelaTerapeutaState();
 }
-class _MyHomePageState extends State<MyHomePage> {
+class _TelaTerapeutaState extends State<TelaTerapeuta> {
   get icon => null;
-
- @override
+  @override
   Widget build(BuildContext context) {
+    final currentHeight = MediaQuery.of(context).size.height;
+    final currentWidth = MediaQuery.of(context).size.width;
     return FutureBuilder<Directory>(
       future: getApplicationDocumentsDirectory(),
       builder: (context, snapshot) {
@@ -57,13 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
             }
 
             final nomeUsuario = nomeSnapshot.data!;
-
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             appBar: AppBar(
-              automaticallyImplyLeading: false,
-              centerTitle: true,
-              title: Text('Bem Vindo $nomeUsuario!'),
               flexibleSpace: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -75,6 +70,50 @@ class _MyHomePageState extends State<MyHomePage> {
                     end: Alignment.bottomRight,
                   ),
                 ),
+              ),
+              title: Text("perfil do terapeuta",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('imagens/terapeuta.jpg'), // aq tem q colocar a imagem do terapeuta
+                  ),
+                  SizedBox(height: currentHeight * 0.05),
+                  Text(
+                    "nome do terapeuta kkkk",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: currentHeight * 0.05),
+                  Text(
+                    "especialista em terapia",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  SizedBox(height: currentHeight * 0.15),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      print("clicou no botao de chat")
+                    },
+                    icon: Icon(Icons.chat),
+                    label: Text("iniciar chat"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(158, 19, 130, 155),
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    ),
+                  ),
+                ],
               ),
             ),
             bottomNavigationBar: Container(
@@ -94,8 +133,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 0,
                 items: [
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.home, color: Colors.white),
-                    label: 'Home',
+                    icon: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyHomePage()),
+                        );
+                      },
+                      child: Icon(Icons.home, color: Colors.white),
+                    ),
+                    label: "Início",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.chat, color: Colors.white),
@@ -106,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TelaPesquisa()),
+                          MaterialPageRoute(builder: (context) => cadastro()),
                         );
                       },
                       child: Icon(Icons.search, color: Colors.white),
@@ -118,23 +165,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => cadastro()),
+                          MaterialPageRoute(builder: (context) => TelaLogin()),
                         );
                       },
                       child: Icon(Icons.person, color: Colors.white),
                     ),
-                    label: "$nomeUsuario ",
+                    label: nomeUsuario,
                     ),
                   ],
                 ),
               ),
             );
-          },
-        );
-      } else {
-        return const Center(child: Text("Diretório não encontrado"));
+                  });
+                }
+                return const Center(child: Text("Diretório não encontrado"));
+              },
+            );
       }
-    },
-  );
-}
-}
+    }
