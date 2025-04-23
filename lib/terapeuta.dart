@@ -103,7 +103,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   SizedBox(height: currentHeight * 0.15),
                   ElevatedButton.icon(
                     onPressed: () {
-                      print("clicou no botao de chat")
+                      print("clicou no botao de chat");
                     },
                     icon: Icon(Icons.chat),
                     label: Text("iniciar chat"),
