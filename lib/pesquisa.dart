@@ -50,11 +50,11 @@ class _TelaPesquisaState extends State<TelaPesquisa> {
             if (nomeSnapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (nomeSnapshot.hasError || !nomeSnapshot.hasData) {
+              print(nomeSnapshot.error);
               return const Center(child: Text("Erro ao ler nome do usuário"));
-            }
-
-            final nomeUsuario = nomeSnapshot.data!;
-          return Scaffold(
+            } else if (nomeSnapshot.hasData) {
+              final nomeUsuario = nomeSnapshot.data!;
+              return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             appBar: AppBar(
               flexibleSpace: Container(
@@ -139,9 +139,11 @@ class _TelaPesquisaState extends State<TelaPesquisa> {
                 ),
               ),
             );
-                  });
-                }
-                return const Center(child: Text("Diretório não encontrado"));
+                  }
+                  return const Center(child: Text("Erro desconhecido"));
+        });
+                  }
+                  return const Center(child: Text("Erro desconhecido"));
               },
             );
           }

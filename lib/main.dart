@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/cadastro.dart';
 import 'package:terapa/login.dart';
+import 'package:terapa/pesquisa.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
 void main() {
@@ -77,6 +78,30 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            body: Container(
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: EdgeInsets.all(10),
+                    child: ListTile(
+                      leading: Icon(Icons.person_2_outlined),
+                      title: Text('Terapeuta ${index + 1}'),
+                      subtitle: Text('Rua Canela ${index + 1}'),
+                      trailing: Icon(Icons.arrow_forward, color: Colors.red,),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TelaPesquisa(),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -106,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => cadastro()),
+                          MaterialPageRoute(builder: (context) => TelaPesquisa()),
                         );
                       },
                       child: Icon(Icons.search, color: Colors.white),
@@ -118,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TelaLogin()),
+                          MaterialPageRoute(builder: (context) => cadastro()),
                         );
                       },
                       child: Icon(Icons.person, color: Colors.white),
