@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapa/login.dart';
 
 class TelaPerfil extends StatefulWidget {
   @override
@@ -69,7 +70,9 @@ class _TelaPerfilState extends State<TelaPerfil> {
               style: TextStyle(fontSize: 18),
             ),
             onTap: () {
-             
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => TelaLogin()));
             },
           ),
         ],

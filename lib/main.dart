@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/cadastro.dart';
+import 'package:terapa/cadastroTerapeuta.dart';
 import 'package:terapa/login.dart';
 import 'package:terapa/perfil.dart';
 import 'package:terapa/pesquisa.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
-      home: TelaLogin(),
+      home: TelaPerfil() //TelaLogin(),
     );
   }
 }
