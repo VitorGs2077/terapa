@@ -1,22 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/login.dart';
-
+import 'package:terapa/main.dart';
+import 'package:terapa/cadastro.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 class TelaPerfil extends StatefulWidget {
   @override
   _TelaPerfilState createState() => _TelaPerfilState();
 }
 
 class _TelaPerfilState extends State<TelaPerfil> {
-  String nomeUsuario = "Usuário"; 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final currentHeight = MediaQuery.of(context).size.height;
+    final currentWidth = MediaQuery.of(context).size.width;
+    return FutureBuilder<Directory>(
+      future: getApplicationDocumentsDirectory(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return const Center(child: Text("Erro ao acessar diretório"));
+        } else if (snapshot.hasData) {
+          final directory = snapshot.data!;
+          final nomePath = '${directory.path}/nome.txt';
+          final file = File(nomePath);
+
+    return FutureBuilder<String>(
+      future: file.readAsString(),
+      builder: (context, nomeSnapshot) {
+        if (nomeSnapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (nomeSnapshot.hasError || !nomeSnapshot.hasData) {
+          return const Center(child: Text("Erro ao ler nome do usuário"));
+        }
+
+        final nomeUsuario = nomeSnapshot.data!;
+        return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('Bem Vindo $nomeUsuario!'),
+        title: Text('Perfil $nomeUsuario!'),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -58,7 +84,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
             title: Text(
               'Configurações',
               style: TextStyle(fontSize: 18),
-            ),
+                          ),
             onTap: () {
               
             },
@@ -107,11 +133,20 @@ class _TelaPerfilState extends State<TelaPerfil> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person, color: Colors.white),
-              label: 'Perfil',
+              label: nomeUsuario,
             ),
           ],
         ),
       ),
     );
-  }
-}
+    }
+    );
+     }
+     return const Center(child: Text("Diretório não encontrado"));
+    }
+   );
+   }
+   }
+
+  
+
