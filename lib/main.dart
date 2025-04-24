@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/cadastro.dart';
 import 'package:terapa/login.dart';
+import 'package:terapa/perfil.dart';
 import 'package:terapa/pesquisa.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
@@ -119,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => cadastro()),
+                          MaterialPageRoute(builder: (context) => TelaPerfil()),
                         );
                       },
                       child: Icon(Icons.person, color: Colors.white),
