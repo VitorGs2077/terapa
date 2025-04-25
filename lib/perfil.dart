@@ -35,7 +35,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundImage: AssetImage('assets/user_placeholder.png'),
+            backgroundImage: AssetImage('imagens/terapeuta.jpg'),
           ),
           SizedBox(height: 16),
           Text(

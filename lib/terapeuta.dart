@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/cadastro.dart';
+import 'package:terapa/home.dart';
 import 'package:terapa/login.dart';
 import 'package:terapa/main.dart';
 // Tom azul: (158, 19, 130, 155)
@@ -33,7 +34,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
   @override
   Widget build(BuildContext context) {
     final currentHeight = MediaQuery.of(context).size.height;
-    final currentWidth = MediaQuery.of(context).size.width;
+    //final currentWidth = MediaQuery.of(context).size.width;
     return FutureBuilder<Directory>(
       future: getApplicationDocumentsDirectory(),
       builder: (context, snapshot) {
