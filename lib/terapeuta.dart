@@ -1,11 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/cadastro.dart';
 import 'package:terapa/home.dart';
 import 'package:terapa/login.dart';
-import 'package:terapa/main.dart';
+
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
 class Terapeuta extends StatelessWidget {

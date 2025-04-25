@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/login.dart';
-import 'package:terapa/main.dart';
-import 'package:terapa/cadastro.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+
 class TelaPerfil extends StatefulWidget {
   @override
   _TelaPerfilState createState() => _TelaPerfilState();
@@ -13,8 +12,8 @@ class _TelaPerfilState extends State<TelaPerfil> {
 
   @override
   Widget build(BuildContext context) {
-    final currentHeight = MediaQuery.of(context).size.height;
-    final currentWidth = MediaQuery.of(context).size.width;
+    // final currentHeight = MediaQuery.of(context).size.height;
+    // final currentWidth = MediaQuery.of(context).size.width;
     return FutureBuilder<Directory>(
       future: getApplicationDocumentsDirectory(),
       builder: (context, snapshot) {
