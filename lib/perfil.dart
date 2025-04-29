@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:terapa/login.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:terapa/pesquisa.dart';
 
 class TelaPerfil extends StatefulWidget {
+  const TelaPerfil({super.key});
+
   @override
   _TelaPerfilState createState() => _TelaPerfilState();
 }
@@ -123,9 +126,17 @@ class _TelaPerfilState extends State<TelaPerfil> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search, color: Colors.white),
-              label: 'Pesquisa',
-            ),
+                    icon: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TelaPesquisa()),
+                        );
+                      },
+                      child: Icon(Icons.search, color: Colors.white),
+                    ),
+                    label: 'Pesquisa',
+                  ),
             BottomNavigationBarItem(
               icon: Icon(Icons.calendar_today, color: Colors.white),
               label: 'Agenda',

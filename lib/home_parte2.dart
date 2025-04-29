@@ -3,22 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/perfil.dart';
 import 'package:terapa/pesquisa.dart';
-import 'package:terapa/tela_chat.dart';
-import 'package:terapa/terapeuta.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class TelaHomeLogada extends StatefulWidget {
+  const TelaHomeLogada({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<TelaHomeLogada> createState() => TelaHomeLogadaState();
 }
-class _MyHomePageState extends State<MyHomePage> {
-  get icon => null;
-  
- @override
+
+class TelaHomeLogadaState extends State<TelaHomeLogada> {
+  @override
   Widget build(BuildContext context) {
-    final currentHeight = MediaQuery.of(context).size.height;
-    final currentWidth = MediaQuery.of(context).size.width;
     return FutureBuilder<Directory>(
       future: getApplicationDocumentsDirectory(),
       builder: (context, snapshot) {
@@ -61,66 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            body: Column(
-              children: [
-                Container(
-                  width: currentWidth*0.9,
-                  margin: EdgeInsets.all(10),
-                  child: Center(
-                    child: FractionallySizedBox( 
-                      child: Center(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                            "Para começar, escolha um profissional encontrado em sua área",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontFamily: "Verdana"
-                              ),
-                            ),
-                          )
-                        )),
-                    ),
+            body: Center(
+              child: Column(
+                children: [
+                  Image.asset("imagens/calendario.jpeg"),
+                  Card(
+                    child: Text("Kaboom"),
                   )
-                ),
-                SizedBox(
-                  height: currentHeight*0.48,
-                  child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Card(
-                    margin: EdgeInsets.all(10),
-                    child: ListTile(
-                      leading: Icon(Icons.person_2_outlined),
-                      title: Text('Terapeuta ${index + 1}'),
-                      subtitle: Text('Rua Canela ${index + 1}'),
-                      trailing: Icon(Icons.arrow_forward, color: Colors.red,),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TelaTerapeuta(),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
+                ],
               ),
-                ),
-                SizedBox(height: 30,),
-                Container(
-                  child: ElevatedButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TelaPesquisa())
-                      );
-                    }, 
-                    child: Text("Procurando por mais opções? Aperte aqui!"),)
-                )
-              ]
             ),
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
@@ -143,16 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: 'Home',
                   ),
                   BottomNavigationBarItem(
-                    
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaChat()));
-                      },
-                      child: Icon(Icons.chat, color: Colors.white),
-                    ) ,
-                    
+                    icon: Icon(Icons.chat, color: Colors.white),
                     label: 'Papo Cabeça',
                   ),
                   BottomNavigationBarItem(
@@ -190,5 +125,5 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     },
   );
-}
+  }
 }
