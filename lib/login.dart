@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:terapa/_func.dart';
 import 'package:terapa/cadastro.dart';
 import 'package:terapa/home.dart';
 class TelaLogin extends StatefulWidget {
@@ -85,10 +86,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("Login realizado com sucesso!"))
                     );
-                    Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (context) => MyHomePage())
-                );
+                    irPara(context, MyHomePage());
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("Email ou senha incorretos!"))
@@ -155,10 +153,7 @@ class _TelaLoginState extends State<TelaLogin> {
                 children: [
                   Text("Não tem uma conta?"), 
                   TextButton(onPressed:(){
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => cadastro())
-                    );
+                    irPara(context, cadastro());
                   },
                   child: Text(
                     "Cadastre-se", 

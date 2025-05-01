@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:terapa/cadastro.dart';
+import 'package:terapa/_func.dart';
 import 'package:terapa/home.dart';
 import 'package:terapa/login.dart';
+import 'package:terapa/perfil.dart';
+import 'package:terapa/pesquisa.dart';
 
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
@@ -135,10 +137,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   BottomNavigationBarItem(
                     icon: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyHomePage()),
-                        );
+                        irPara(context, MyHomePage());
                       },
                       child: Icon(Icons.home, color: Colors.white),
                     ),
@@ -151,10 +150,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   BottomNavigationBarItem(
                     icon: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => cadastro()),
-                        );
+                        irPara(context, TelaPesquisa());
                       },
                       child: Icon(Icons.search, color: Colors.white),
                     ),
@@ -163,10 +159,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   BottomNavigationBarItem(
                     icon: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaLogin()),
-                        );
+                        irPara(context, TelaPerfil());
                       },
                       child: Icon(Icons.person, color: Colors.white),
                     ),

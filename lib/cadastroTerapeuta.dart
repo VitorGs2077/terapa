@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:terapa/_func.dart';
 import 'package:terapa/home.dart';
 import 'package:terapa/login.dart';
 import 'package:path_provider/path_provider.dart';
@@ -145,10 +146,7 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
                 final nomePath = '${directory.path}/nome.txt';
                 final file3 = File(nomePath);
                 await file3.writeAsString(nome);
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => MyHomePage())
-                );
+                irPara(context, MyHomePage());
               } else{
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Email ou senha inválidos!"))
@@ -211,10 +209,7 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
                 children: [
                   Text("Já tem uma conta?"), 
                   TextButton(onPressed:(){
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => TelaLogin())
-                    );
+                    irPara(context, TelaLogin());
                   },
                   child: Text(
                     "Logar", 

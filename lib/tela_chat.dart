@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:terapa/_func.dart';
+import 'package:terapa/_telas_basicas.dart';
 import 'package:terapa/perfil.dart';
 import 'package:terapa/pesquisa.dart';
 
@@ -42,80 +44,14 @@ class _TelaChatState extends State<TelaChat> {
 
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              centerTitle: true,
-              title: Text('Bem Vindo $nomeUsuario!'),
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(158, 19, 130, 155),
-                      Color.fromARGB(237, 108, 171, 124),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-              ),
-            ),
+            appBar: userAppBar(context, nomeUsuario),
             body: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Card(child: Text("teste"),);
               }
             ),
-            bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(158, 19, 130, 155),
-                    Color.fromARGB(237, 108, 171, 124)
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home, color: Colors.white),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.chat, color: Colors.white),
-                    label: 'Papo Cabeça',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaPesquisa()),
-                        );
-                      },
-                      child: Icon(Icons.search, color: Colors.white),
-                    ),
-                    label: 'Pesquisa',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaPerfil()),
-                        );
-                      },
-                      child: Icon(Icons.person, color: Colors.white),
-                    ),
-                    label: "$nomeUsuario ",
-                    ),
-                  ],
-                ),
-              ),
+            bottomNavigationBar: bottomUserBar(context, nomeUsuario)
             );
           },
         );

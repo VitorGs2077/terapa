@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:terapa/perfil.dart';
+import 'package:terapa/_func.dart';
+import 'package:terapa/_telas_basicas.dart';
 import 'package:terapa/pesquisa.dart';
-import 'package:terapa/tela_chat.dart';
 import 'package:terapa/terapeuta.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -44,23 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              centerTitle: true,
-              title: Text('Bem Vindo $nomeUsuario!'),
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(158, 19, 130, 155),
-                      Color.fromARGB(237, 108, 171, 124),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-              ),
-            ),
+            appBar: userAppBar(context, "Bem vindo, $nomeUsuario!"),
             body: Column(
               children: [
                 Container(
@@ -73,11 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                            "Para começar, escolha um profissional encontrado em sua área",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontFamily: "Verdana"
-                              ),
+                              "Para começar, escolha um profissional encontrado em sua área",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontFamily: "Verdana"
+                                ),
                             ),
                           )
                         )),
@@ -97,12 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       subtitle: Text('Rua Canela ${index + 1}'),
                       trailing: Icon(Icons.arrow_forward, color: Colors.red,),
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TelaTerapeuta(),
-                          ),
-                        );
+                        irPara(context, TelaTerapeuta());
                       },
                     ),
                   );
@@ -113,75 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   child: ElevatedButton(
                     onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TelaPesquisa())
-                      );
+                      irPara(context, TelaPesquisa());
                     }, 
                     child: Text("Procurando por mais opções? Aperte aqui!"),)
                 )
               ]
             ),
-            bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(158, 19, 130, 155),
-                    Color.fromARGB(237, 108, 171, 124)
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home, color: Colors.white),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaChat()));
-                      },
-                      child: Icon(Icons.chat, color: Colors.white),
-                    ) ,
-                    
-                    label: 'Papo Cabeça',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaPesquisa()),
-                        );
-                      },
-                      child: Icon(Icons.search, color: Colors.white),
-                    ),
-                    label: 'Pesquisa',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaPerfil()),
-                        );
-                      },
-                      child: Icon(Icons.person, color: Colors.white),
-                    ),
-                    label: "$nomeUsuario ",
-                    ),
-                  ],
-                ),
-              ),
+            bottomNavigationBar: bottomUserBar(context, nomeUsuario)
             );
           },
         );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:terapa/_func.dart';
+import 'package:terapa/_telas_basicas.dart';
 import 'package:terapa/login.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:terapa/pesquisa.dart';
 
 class TelaPerfil extends StatefulWidget {
   const TelaPerfil({super.key});
@@ -41,23 +42,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
         final nomeUsuario = nomeSnapshot.data!;
         return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text('Perfil $nomeUsuario!'),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(158, 19, 130, 155),
-                Color.fromARGB(237, 108, 171, 124),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
-      ),
+      appBar: userAppBar(context, "Perfil de $nomeUsuario"),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -98,56 +83,12 @@ class _TelaPerfilState extends State<TelaPerfil> {
               style: TextStyle(fontSize: 18),
             ),
             onTap: () {
-              Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => TelaLogin()));
+              irPara(context, TelaLogin());
             },
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(158, 19, 130, 155),
-              Color.fromARGB(237, 108, 171, 124),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.white),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaPesquisa()),
-                        );
-                      },
-                      child: Icon(Icons.search, color: Colors.white),
-                    ),
-                    label: 'Pesquisa',
-                  ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today, color: Colors.white),
-              label: 'Agenda',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person, color: Colors.white),
-              label: nomeUsuario,
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: bottomUserBar(context, nomeUsuario),
     );
     }
     );

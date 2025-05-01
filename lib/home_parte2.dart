@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:terapa/_func.dart';
+import 'package:terapa/_telas_basicas.dart';
 import 'package:terapa/perfil.dart';
 import 'package:terapa/pesquisa.dart';
 
@@ -27,103 +29,37 @@ class TelaHomeLogadaState extends State<TelaHomeLogada> {
           final file = File(nomePath);
 
           return FutureBuilder<String>(
-          future: file.readAsString(),
-          builder: (context, nomeSnapshot) {
-            if (nomeSnapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (nomeSnapshot.hasError || !nomeSnapshot.hasData) {
-              return const Center(child: Text("Erro ao ler nome do usuário"));
-            }
+            future: file.readAsString(),
+            builder: (context, nomeSnapshot) {
+              if (nomeSnapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (nomeSnapshot.hasError || !nomeSnapshot.hasData) {
+                return const Center(child: Text("Erro ao ler nome do usuário"));
+              }
 
-            final nomeUsuario = nomeSnapshot.data!;
+              final nomeUsuario = nomeSnapshot.data!;
 
-          return Scaffold(
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              centerTitle: true,
-              title: Text('Bem Vindo $nomeUsuario!'),
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(158, 19, 130, 155),
-                      Color.fromARGB(237, 108, 171, 124),
+              return Scaffold(
+                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                appBar: userAppBar(context, "Bem vindo $nomeUsuario!"),
+                body: Center(
+                  child: Column(
+                    children: [
+                      Image.asset("imagens/calendario.jpeg"),
+                      Card(
+                        child: Text("Kaboom"),
+                      )
                     ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
                   ),
                 ),
-              ),
-            ),
-            body: Center(
-              child: Column(
-                children: [
-                  Image.asset("imagens/calendario.jpeg"),
-                  Card(
-                    child: Text("Kaboom"),
-                  )
-                ],
-              ),
-            ),
-            bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(158, 19, 130, 155),
-                    Color.fromARGB(237, 108, 171, 124)
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home, color: Colors.white),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.chat, color: Colors.white),
-                    label: 'Papo Cabeça',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaPesquisa()),
-                        );
-                      },
-                      child: Icon(Icons.search, color: Colors.white),
-                    ),
-                    label: 'Pesquisa',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaPerfil()),
-                        );
-                      },
-                      child: Icon(Icons.person, color: Colors.white),
-                    ),
-                    label: "$nomeUsuario ",
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      } else {
-        return const Center(child: Text("Diretório não encontrado"));
-      }
-    },
-  );
+                bottomNavigationBar: bottomUserBar(context, nomeUsuario)
+              );
+            },
+          );
+        } else {
+          return const Center(child: Text("Diretório não encontrado"));
+        }
+      },
+    );
   }
 }

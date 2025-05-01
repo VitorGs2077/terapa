@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:terapa/_func.dart';
 import 'package:terapa/home.dart';
 import 'package:terapa/login.dart';
 import 'package:path_provider/path_provider.dart';
@@ -120,10 +121,7 @@ class _cadastroState extends State<cadastro> {
                 final nomePath = '${directory.path}/nome.txt';
                 final file3 = File(nomePath);
                 await file3.writeAsString(nome);
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => MyHomePage())
-                );
+                irPara(context, MyHomePage());
               } else{
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Email ou senha inválidos!"))
@@ -183,19 +181,17 @@ class _cadastroState extends State<cadastro> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Já tem uma conta?"), 
-                  TextButton(onPressed:(){
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => TelaLogin())
-                    );
-                  },
-                  child: Text(
-                    "Logar", 
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 255, 230, 0), 
-                      fontWeight: FontWeight.bold
+                  TextButton(
+                    onPressed:(){
+                      irPara(context, TelaLogin());
+                    },
+                    child: Text(
+                      "Logar", 
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 230, 0), 
+                        fontWeight: FontWeight.bold
+                      )
                     )
-                  )
                   )
                 ]
               ),
