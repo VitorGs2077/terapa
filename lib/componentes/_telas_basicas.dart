@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:terapa/_func.dart';
-import 'package:terapa/perfil.dart';
-import 'package:terapa/pesquisa.dart';
+import 'package:terapa/componentes/_func.dart';
+import 'package:terapa/telas/cadastro_escolha.dart';
+import 'package:terapa/telas/perfil.dart';
+import 'package:terapa/telas/pesquisa.dart';
 
 PreferredSizeWidget userAppBar(context, textoAppBar){
   return AppBar(
@@ -45,7 +46,14 @@ Widget bottomUserBar(context, nomeUsuario){
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.chat, color: Colors.white),
+          icon: GestureDetector(
+            onTap: () {
+              irPara(context, escolhaLogin());
+            },
+            child: Icon(Icons.chat, color: Colors.white),
+          ),
+          
+          
           label: 'Papo Cabeça',
         ),
         BottomNavigationBarItem(

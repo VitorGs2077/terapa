@@ -1,10 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:terapa/_func.dart';
-import 'package:terapa/_telas_basicas.dart';
-import 'package:terapa/perfil.dart';
-import 'package:terapa/pesquisa.dart';
+import 'package:terapa/componentes/_telas_basicas.dart';
 
 class TelaHomeLogada extends StatefulWidget {
   const TelaHomeLogada({super.key});

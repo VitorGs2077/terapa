@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:terapa/home.dart';
+import 'package:terapa/telas/cadastro_escolha.dart';
+import 'package:terapa/telas/home.dart';
+import 'package:terapa/telas/login.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
-      home: MyHomePage(),
+      home: escolhaLogin()
     );
   }
 }

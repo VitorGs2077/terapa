@@ -1,45 +1,32 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:terapa/_func.dart';
-import 'package:terapa/home.dart';
-import 'package:terapa/login.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:terapa/componentes/_func.dart';
+import 'package:terapa/telas/cadastro.dart';
+import 'package:terapa/telas/home.dart';
+class TelaLogin extends StatefulWidget {
+  const TelaLogin({super.key});
 
-class Cadastroterapeuta extends StatefulWidget {
-  const Cadastroterapeuta({super.key});
   @override
-  State<Cadastroterapeuta> createState() => _CadastroterapeutaState();
+  State<TelaLogin> createState() => _TelaLoginState();
 }
 
-class _CadastroterapeutaState extends State<Cadastroterapeuta> {
+class _TelaLoginState extends State<TelaLogin> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _nomeController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-  File? _selectedImage;
-
-  Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      setState(() {
-        _selectedImage = File(pickedFile.path);
-      });
-    }
-  }
 
   TextStyle style = TextStyle(
     fontFamily: "Montserrat", 
-    fontSize: 20, color: Colors.black);
+    fontSize: 20, 
+    color: Colors.black);
+  
   @override
   Widget build(BuildContext context) {
     final currentWidth = MediaQuery.of(context).size.width;
     final currentHeight = MediaQuery.of(context).size.height;
 
     final emailField = FractionallySizedBox(
-      
+
       widthFactor: 0.7,
       child: TextField(
         controller: _emailController,
@@ -50,23 +37,6 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
           filled: true,
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Email",
-          hintStyle: TextStyle(color: Colors.black),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32)),
-        ),
-      ),
-    );
-
-    final nomeField = FractionallySizedBox(
-      widthFactor: 0.7,
-      child: TextField(
-        controller: _nomeController,
-        obscureText: false,
-        style: style,
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Nome",
           hintStyle: TextStyle(color: Colors.black),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(32)),
         ),
@@ -91,65 +61,45 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
       ),
     );
 
-    final confirmPasswordField = FractionallySizedBox(
-      widthFactor: 0.7,
-      child: TextField(
-        controller: _confirmPasswordController,
-        obscureText: true,
-        style: style,
-        decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Confirmar Senha",
-          hintStyle: TextStyle(color: Colors.black),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32)),
-        ),
-      ),
-    );
-
-    final fotoDePerfil = GestureDetector(
-      onTap: _pickImage,
-      child: CircleAvatar(
-        radius: currentWidth * 0.2,
-        backgroundImage: _selectedImage != null
-            ? FileImage(_selectedImage!)
-            : AssetImage('imagens/adicionarFoto.webp') as ImageProvider,
-      ),
-    );
-
-    final buttonRegister = FractionallySizedBox(
+    final buttonLogin = FractionallySizedBox(
       widthFactor: 0.6,
       child:ButtonTheme(
         child: ElevatedButton(
           onPressed: () async {
             String email = _emailController.text;
             String password = _passwordController.text;
-            String nome = _nomeController.text;
-            String confirmPassword = _confirmPasswordController.text;
-            if(email.isEmpty || password.isEmpty || nome.isEmpty || confirmPassword.isEmpty){
+            if(email.isEmpty || password.isEmpty){
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text("Preencha todos os campos!"))
               );
             }else{
-              if (email.contains('.com') && email.contains('@') && password == confirmPassword) {
+              if (email.contains('.com') && email.contains('@')) {
                 final directory = await getApplicationDocumentsDirectory();
-
                 final senhaPath = '${directory.path}/senha.txt';
-                final file1 = File(senhaPath);
-                await file1.writeAsString(password);
-
+                final arquivoSenha = File(senhaPath);
                 final emailPath = '${directory.path}/email.txt';
-                final file2 = File(emailPath);
-                await file2.writeAsString(email);
-
-                final nomePath = '${directory.path}/nome.txt';
-                final file3 = File(nomePath);
-                await file3.writeAsString(nome);
-                irPara(context, MyHomePage());
+                final arquivoEmail = File(emailPath);
+                if (await arquivoSenha.exists() && await arquivoEmail.exists()) {
+                  String senhaContent = await arquivoSenha.readAsString();
+                  String emailContent = await arquivoEmail.readAsString();
+                  if (senhaContent == password && emailContent == email) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Login realizado com sucesso!"))
+                    );
+                    irPara(context, MyHomePage());
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Email ou senha incorretos!"))
+                    );
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Login não encontrado!"))
+                  );
+                }
               } else{
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Email ou senha inválidos!"))
+                  SnackBar(content: Text("Email inválidos!"))
                 );
               }
             }
@@ -162,7 +112,7 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
         )
       )
     ),
-        child: Text("Cadastrar",
+        child: Text("Login",
         textAlign: TextAlign.center,
         style: style.copyWith(color:Colors.black, fontWeight: FontWeight.bold)
           ),
@@ -189,32 +139,26 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
             children: [
               SizedBox(height: currentHeight*0.1),
               FractionallySizedBox(
-                widthFactor: 0.8, 
+                widthFactor: 0.8,
                 child: Image.asset("imagens/logo_terapa.png")
-              ),
-              SizedBox(height: currentHeight*0.035),
-              fotoDePerfil,
-              SizedBox(height: currentHeight*0.035),
-              nomeField,
-              SizedBox(height: currentHeight*0.035),
+                ),
+              SizedBox(height: currentHeight*0.065),
               emailField,
-              SizedBox(height: currentHeight*0.035),
+              SizedBox(height: currentHeight*0.065),
               passwordField,
-              SizedBox(height: currentHeight*0.035),
-              confirmPasswordField,
-              SizedBox(height: currentHeight*0.035),
-              buttonRegister,
+              SizedBox(height: currentHeight*0.065),
+              buttonLogin,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Já tem uma conta?"), 
+                  Text("Não tem uma conta?"), 
                   TextButton(onPressed:(){
-                    irPara(context, TelaLogin());
+                    irPara(context, cadastro());
                   },
                   child: Text(
-                    "Logar", 
+                    "Cadastre-se", 
                     style: TextStyle(
-                      color: const Color.fromARGB(255, 255, 230, 0), 
+                      color: const Color.fromARGB(255, 0, 51, 0), 
                       fontWeight: FontWeight.bold
                     )
                   )

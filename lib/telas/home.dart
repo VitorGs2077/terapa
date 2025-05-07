@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:terapa/_func.dart';
-import 'package:terapa/_telas_basicas.dart';
-import 'package:terapa/pesquisa.dart';
-import 'package:terapa/terapeuta.dart';
+import 'package:terapa/componentes/_func.dart';
+import 'package:terapa/componentes/_telas_basicas.dart';
+import 'package:terapa/telas/pesquisa.dart';
+import 'package:terapa/telas/terapeuta.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
