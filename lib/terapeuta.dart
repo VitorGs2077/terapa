@@ -33,7 +33,6 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
   @override
   Widget build(BuildContext context) {
     final currentHeight = MediaQuery.of(context).size.height;
-    final currentWidth = MediaQuery.of(context).size.width;
     return FutureBuilder<Directory>(
       future: getApplicationDocumentsDirectory(),
       builder: (context, snapshot) {
@@ -79,16 +78,23 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(height: currentHeight * 0.025),
                   CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage('imagens/terapeuta.jpg'), // aq tem q colocar a imagem do terapeuta
                   ),
                   SizedBox(height: currentHeight * 0.05),
                   Text(
-                    "nome do terapeuta kkkk",
+                    "nome do terapeuta",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text("Avaliação: 4.5/5 >⭐",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[700],
                     ),
                   ),
                   SizedBox(height: currentHeight * 0.05),
@@ -103,7 +109,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   SizedBox(height: currentHeight * 0.15),
                   ElevatedButton.icon(
                     onPressed: () {
-                      print("clicou no botao de chat")
+                      print("clicou no botao de chat");
                     },
                     icon: Icon(Icons.chat),
                     label: Text("iniciar chat"),
