@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:terapa/cadastro.dart';
-import 'package:terapa/login.dart';
-import 'package:terapa/main.dart';
+import 'package:terapa/componentes/_telas_basicas.dart';
+import 'package:terapa/telas/login.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
+
 class Pesquisa extends StatelessWidget {
   const Pesquisa({super.key});
 
@@ -50,11 +50,11 @@ class _TelaPesquisaState extends State<TelaPesquisa> {
             if (nomeSnapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (nomeSnapshot.hasError || !nomeSnapshot.hasData) {
+              print(nomeSnapshot.error);
               return const Center(child: Text("Erro ao ler nome do usuário"));
-            }
-
-            final nomeUsuario = nomeSnapshot.data!;
-          return Scaffold(
+            } else if (nomeSnapshot.hasData) {
+              final nomeUsuario = nomeSnapshot.data!;
+              return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             appBar: AppBar(
               flexibleSpace: Container(
@@ -79,69 +79,13 @@ class _TelaPesquisaState extends State<TelaPesquisa> {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(158, 19, 130, 155),
-                    Color.fromARGB(237, 108, 171, 124)
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                items: [
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyHomePage()),
-                        );
-                      },
-                      child: Icon(Icons.home, color: Colors.white),
-                    ),
-                    label: "Início",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.chat, color: Colors.white),
-                    label: 'Papo Cabeça',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => cadastro()),
-                        );
-                      },
-                      child: Icon(Icons.search, color: Colors.white),
-                    ),
-                    label: 'Pesquisa',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TelaLogin()),
-                        );
-                      },
-                      child: Icon(Icons.person, color: Colors.white),
-                    ),
-                    label: nomeUsuario,
-                    ),
-                  ],
-                ),
-              ),
+            bottomNavigationBar: bottomUserBar(context, nomeUsuario)
             );
-                  });
-                }
-                return const Center(child: Text("Diretório não encontrado"));
+                  }
+                  return const Center(child: Text("Erro desconhecido"));
+        });
+                  }
+                  return const Center(child: Text("Erro desconhecido"));
               },
             );
           }
