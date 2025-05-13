@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/componentes/_func.dart';
 import 'package:terapa/componentes/_telas_basicas.dart';
+import 'package:terapa/telas/inf.dart';
 import 'package:terapa/telas/login.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -63,7 +64,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
               style: TextStyle(fontSize: 18),
             ),
             onTap: () {
-            
+            irPara(context, TelaInf());
             },
           ),
           ListTile(
