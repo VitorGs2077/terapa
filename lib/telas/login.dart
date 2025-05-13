@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/componentes/_func.dart';
-import 'package:terapa/telas/cadastro.dart';
+import 'package:terapa/telas/cadastroUsuario.dart';
+import 'package:terapa/telas/cadastro_escolha.dart';
 import 'package:terapa/telas/home.dart';
 class TelaLogin extends StatefulWidget {
   const TelaLogin({super.key});
@@ -121,6 +122,7 @@ class _TelaLoginState extends State<TelaLogin> {
     );
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body:Container(
         width: currentWidth,
         height: currentHeight,
@@ -153,7 +155,7 @@ class _TelaLoginState extends State<TelaLogin> {
                 children: [
                   Text("Não tem uma conta?"), 
                   TextButton(onPressed:(){
-                    irPara(context, cadastro());
+                    irPara(context, escolhaLogin());
                   },
                   child: Text(
                     "Cadastre-se", 

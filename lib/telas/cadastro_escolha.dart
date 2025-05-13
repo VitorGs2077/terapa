@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/componentes/_func.dart';
+import 'package:terapa/telas/cadastroUsuario.dart';
 import 'package:terapa/telas/cadastroTerapeuta.dart';
-import 'package:terapa/telas/tela_vazia.dart';
 
 class escolhaLogin extends StatefulWidget {
   const escolhaLogin({super.key});
@@ -32,28 +32,33 @@ class _escolhaLoginState extends State<escolhaLogin> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset("imagens/logo_terapa.png"),
               SizedBox(
-                width: currentWidth*0.7,
+                width: currentWidth*0.8,
                 height: currentHeight*0.1,
                 child: Card(
-                  child: Text("Olá"),
+                  child: Center(child: Text("Como você deseja se cadastrar?", style: TextStyle(fontSize: currentWidth*0.05))),
                 ),
               ),
               SizedBox(
-                height: currentHeight*0.2,
+                height: currentHeight*0.05,
               ),
             SizedBox(
               height: currentHeight*0.1,
               width: currentWidth*0.7,
-              child: ElevatedButton(onPressed: (){irPara(context, construirDepois());}, child: Center(child: Text("usuário", style: TextStyle(fontSize: currentWidth*0.05),))),
+              child: ElevatedButton(
+                // style: ButtonStyle(
+                //   backgroundColor: WidgetStateProperty.all(Colors.blue),
+                // ),
+                onPressed: (){irPara(context, TelaCadastroUsuario());}, child: Center(child: Text("Usuário", style: TextStyle(fontSize: currentWidth*0.05),))),
             ),
             SizedBox(
-              height: currentHeight*0.1,
+              height: currentHeight*0.05,
             ),
             SizedBox(
               height: currentHeight*0.1,
               width: currentWidth*0.7,
-              child: ElevatedButton(onPressed: (){irPara(context, Cadastroterapeuta());}, child: Text("doutor", style: TextStyle(fontSize: currentWidth*0.05))),
+              child: ElevatedButton(onPressed: (){irPara(context, TelaCadastroTerapeuta());}, child: Text("Profissional", style: TextStyle(fontSize: currentWidth*0.05))),
             ),
           ],
           )

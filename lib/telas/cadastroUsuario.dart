@@ -4,12 +4,12 @@ import 'package:terapa/componentes/_func.dart';
 import 'package:terapa/telas/home.dart';
 import 'package:terapa/telas/login.dart';
 import 'package:path_provider/path_provider.dart';
-class cadastro extends StatefulWidget {
-  const cadastro({super.key});
+class TelaCadastroUsuario extends StatefulWidget {
+  const TelaCadastroUsuario({super.key});
   @override
-  State<cadastro> createState() => _cadastroState();
+  State<TelaCadastroUsuario> createState() => _TelaCadastroUsuarioState();
 }
-class _cadastroState extends State<cadastro> {
+class _TelaCadastroUsuarioState extends State<TelaCadastroUsuario> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nomeController = TextEditingController();
@@ -146,6 +146,7 @@ class _cadastroState extends State<cadastro> {
     );
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body:Container(
         width: currentWidth,
         height: currentHeight,
@@ -188,7 +189,7 @@ class _cadastroState extends State<cadastro> {
                     child: Text(
                       "Logar", 
                       style: TextStyle(
-                        color: const Color.fromARGB(255, 255, 230, 0), 
+                        color: const Color.fromARGB(255, 0, 51, 0), 
                         fontWeight: FontWeight.bold
                       )
                     )
