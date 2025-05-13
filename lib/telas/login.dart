@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/componentes/_func.dart';
-import 'package:terapa/telas/cadastroUsuario.dart';
 import 'package:terapa/telas/cadastro_escolha.dart';
 import 'package:terapa/telas/home.dart';
 class TelaLogin extends StatefulWidget {

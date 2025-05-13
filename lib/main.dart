@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapa/telas/cadastroTerapeuta.dart';
-import 'package:terapa/telas/cadastro_escolha.dart';
-import 'package:terapa/telas/home.dart';
 import 'package:terapa/telas/login.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)

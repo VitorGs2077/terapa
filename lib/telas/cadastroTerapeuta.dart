@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:terapa/componentes/_func.dart';
 import 'package:terapa/telas/cadastroTerapeuta2.dart';
-import 'package:terapa/telas/home.dart';
 import 'package:terapa/telas/login.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
