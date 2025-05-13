@@ -51,9 +51,20 @@ class _TelaInfState extends State<TelaInf> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage('imagens/terapeuta.jpg'),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Color.fromARGB(61, 19, 130, 155),
+                    Color.fromARGB(104, 108, 171, 124)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight
+                  )
+                ),
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage('imagens/terapeuta.jpg'),
+                  backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+                ),
               ),
               const SizedBox(height: 16),
               Text(
