@@ -53,7 +53,7 @@ class _TelaInfState extends State<TelaInf> {
             children: [
               CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('imagens/terapeuta.jpg'),
+                backgroundImage: AssetImage('imagens/adicionarFoto.webp'),
               ),
               const SizedBox(height: 16),
               Text(
@@ -61,25 +61,50 @@ class _TelaInfState extends State<TelaInf> {
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 32),
-              ListTile(
+                ListTile(
                 leading: const Icon(Icons.person, size: 32),
-                title: Text(
-                  'Nome: $nomeUsuario',
-                  style: const TextStyle(fontSize: 18),
+                title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Nome: $nomeUsuario',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.edit, size: 20,))
+                  
+                ],
+                  
+                  
+               
                 ),
               ),
               ListTile(
                 leading: const Icon(Icons.email, size: 32),
-                title: Text(
-                  'Email: $emailUsuario',
-                  style: const TextStyle(fontSize: 18),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Email: $emailUsuario",
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.edit, size: 20,))
+                  ]
+                 
                 ),
+               
               ),
+              
               ListTile(
                 leading: const Icon(Icons.lock, size: 32),
-                title: Text(
-                  'Senha: ${'*' * senhaUsuario.length}',
-                  style: const TextStyle(fontSize: 18),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Senha: ${'*' * senhaUsuario.length}',
+                  style: const TextStyle(fontSize: 18),),
+                 IconButton(onPressed: (){}, icon: Icon(Icons.edit, size: 20,))
+
+                  ]
+                  
                 ),
               ),
             ],

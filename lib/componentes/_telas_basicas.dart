@@ -49,7 +49,6 @@ Widget bottomUserBar(context, nomeUsuario){
             },
             child: Icon(Icons.home, color: Colors.white),
           ),
-          
           label: 'Home',
         ),
         BottomNavigationBarItem(
