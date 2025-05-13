@@ -54,25 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: FractionallySizedBox( 
                       child: Center(
                         child: Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(61, 19, 130, 155),
-                            Color.fromARGB(104, 108, 171, 124)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Para começar, escolha um profissional encontrado em sua área",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontFamily: "Verdana"
-                                  ),
-                              ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Para começar, escolha um profissional encontrado em sua área",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontFamily: "Verdana"
+                                ),
                             ),
                           )
                         )),
@@ -116,7 +105,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: (){
                     irPara(context, TelaPesquisa());
                   }, 
-                  child: Text("Procurando por mais opções? Aperte aqui!"),)
+                  child:Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        Color.fromARGB(61, 19, 130, 155),
+                        Color.fromARGB(104, 108, 171, 124)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight
+                    )
+                   ),
+                    child: Text("Procurando por mais opções? Aperte aqui!")
+                  ),
+                )
               ]
             ),
             bottomNavigationBar: bottomUserBar(context, nomeUsuario)

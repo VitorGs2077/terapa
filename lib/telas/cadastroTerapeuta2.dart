@@ -18,7 +18,7 @@ class _TelaCadastroTerapeuta2State extends State<TelaCadastroTerapeuta2> {
     final currentHeight = MediaQuery.of(context).size.height;
     
     return Scaffold(
-resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body:Container(
         height: currentHeight,
         decoration: const BoxDecoration(

@@ -110,11 +110,21 @@ class _TelaCadastroTerapeutaState extends State<TelaCadastroTerapeuta> {
 
     final fotoDePerfil = GestureDetector(
       onTap: _pickImage,
-      child: CircleAvatar(
-        radius: currentWidth * 0.2,
-        backgroundImage: _selectedImage != null
-            ? FileImage(_selectedImage!)
-            : AssetImage('imagens/adicionarFoto.webp') as ImageProvider,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(61, 19, 130, 155),
+            Color.fromARGB(104, 108, 171, 124)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight
+          )
+        ),
+        child: CircleAvatar(
+          radius: currentWidth * 0.2,
+          backgroundImage: _selectedImage != null
+              ? FileImage(_selectedImage!)
+              : AssetImage('imagens/adicionarFoto.webp') as ImageProvider,
+        ),
       ),
     );
 

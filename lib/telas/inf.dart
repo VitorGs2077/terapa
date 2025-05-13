@@ -53,7 +53,7 @@ class _TelaInfState extends State<TelaInf> {
             children: [
               CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('imagens/adicionarFoto.webp'),
+                backgroundImage: AssetImage('imagens/terapeuta.jpg'),
               ),
               const SizedBox(height: 16),
               Text(
