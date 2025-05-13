@@ -75,27 +75,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemBuilder: (context, index) {
                   return Card(
                     margin: EdgeInsets.all(10),
-                    child: ListTile(
-                      leading: Icon(Icons.person_2_outlined),
-                      title: Text('Terapeuta ${index + 1}'),
-                      subtitle: Text('Rua Canela ${index + 1}'),
-                      trailing: Icon(Icons.arrow_forward, color: Colors.red,),
-                      onTap: () {
-                        irPara(context, TelaTerapeuta());
-                      },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(61, 19, 130, 155),
+                            Color.fromARGB(104, 108, 171, 124)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      child: ListTile(
+                        tileColor: Color.fromARGB(255, 255, 255, 0),
+                        leading: Icon(Icons.person_2_outlined),
+                        title: Text('Terapeuta ${index + 1}'),
+                        subtitle: Text('Rua Canela ${index + 1}'),
+                        trailing: Icon(Icons.arrow_forward, color: Colors.red,),
+                        onTap: () {
+                          irPara(context, TelaTerapeuta());
+                        },
+                      ),
                     ),
                   );
                 },
               ),
                 ),
                 SizedBox(height: 30,),
-                Container(
-                  child: ElevatedButton(
-                    onPressed: (){
-                      irPara(context, TelaPesquisa());
-                    }, 
-                    child: Text("Procurando por mais opções? Aperte aqui!"),)
-                )
+                ElevatedButton(
+                  onPressed: (){
+                    irPara(context, TelaPesquisa());
+                  }, 
+                  child: Text("Procurando por mais opções? Aperte aqui!"),)
               ]
             ),
             bottomNavigationBar: bottomUserBar(context, nomeUsuario)
