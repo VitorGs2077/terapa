@@ -43,12 +43,12 @@ class _TelaPerfilState extends State<TelaPerfil> {
         return Scaffold(
       backgroundColor: Colors.white,
       appBar: userAppBar(context, "Perfil de $nomeUsuario"),
-      body: Column(
+      body: Column( 
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundImage: AssetImage('imagens/terapeuta.jpg'),
+            backgroundImage: AssetImage('imagens/adicionarFoto.webp'),
           ),
           SizedBox(height: 16),
           Text(

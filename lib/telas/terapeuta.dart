@@ -80,11 +80,11 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('imagens/terapeuta.jpg'), // aq tem q colocar a imagem do terapeuta
+                    backgroundImage: AssetImage('imagens/adicionarFoto.webp'), // aq tem q colocar a imagem do terapeuta
                   ),
                   SizedBox(height: currentHeight * 0.05),
                   Text(
-                    "nome do terapeuta kkkk",
+                    "nome do terapeuta",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,

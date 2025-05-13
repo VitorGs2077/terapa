@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapa/componentes/_func.dart';
-import 'package:terapa/telas/cadastro_escolha.dart';
+import 'package:terapa/telas/home.dart';
 import 'package:terapa/telas/perfil.dart';
 import 'package:terapa/telas/pesquisa.dart';
 import 'package:terapa/telas/tela_chat.dart';
@@ -43,7 +43,13 @@ Widget bottomUserBar(context, nomeUsuario){
       elevation: 0,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Colors.white),
+          icon: GestureDetector(
+            onTap: () {
+              irPara(context, MyHomePage());
+            },
+            child: Icon(Icons.home, color: Colors.white),
+          ),
+          
           label: 'Home',
         ),
         BottomNavigationBarItem(
