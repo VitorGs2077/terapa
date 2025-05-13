@@ -3,6 +3,7 @@ import 'package:terapa/componentes/_func.dart';
 import 'package:terapa/telas/cadastro_escolha.dart';
 import 'package:terapa/telas/perfil.dart';
 import 'package:terapa/telas/pesquisa.dart';
+import 'package:terapa/telas/tela_chat.dart';
 
 PreferredSizeWidget userAppBar(context, textoAppBar){
   return AppBar(
@@ -48,7 +49,7 @@ Widget bottomUserBar(context, nomeUsuario){
         BottomNavigationBarItem(
           icon: GestureDetector(
             onTap: () {
-              irPara(context, escolhaLogin());
+              irPara(context, TelaChat());
             },
             child: Icon(Icons.chat, color: Colors.white),
           ),

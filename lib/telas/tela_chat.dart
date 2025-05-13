@@ -14,8 +14,8 @@ class TelaChat extends StatefulWidget {
 class _TelaChatState extends State<TelaChat> {
   @override
   Widget build(BuildContext context) {
-    final currentHeight = MediaQuery.of(context).size.height;
-    final currentWidth = MediaQuery.of(context).size.width;
+    // final currentHeight = MediaQuery.of(context).size.height;
+    // final currentWidth = MediaQuery.of(context).size.width;
     return FutureBuilder<Directory>(
       future: getApplicationDocumentsDirectory(),
       builder: (context, snapshot) {
@@ -41,12 +41,17 @@ class _TelaChatState extends State<TelaChat> {
 
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            appBar: userAppBar(context, nomeUsuario),
+            appBar: userAppBar(context, "Conversas"),
             body: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
-                return Card(child: Text("teste"),);
+                return ListTile(
+                  leading: Icon(Icons.person),
+                  title: Center(child: Text("Terapeuta ${index + 1}")),
+                  trailing: Icon(Icons.chat_bubble),
+                );
               }
+              
             ),
             bottomNavigationBar: bottomUserBar(context, nomeUsuario)
             );

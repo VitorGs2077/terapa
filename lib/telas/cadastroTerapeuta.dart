@@ -1,18 +1,18 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:terapa/componentes/_func.dart';
-import 'package:terapa/telas/home.dart';
+import 'package:terapa/telas/cadastroTerapeuta2.dart';
 import 'package:terapa/telas/login.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Cadastroterapeuta extends StatefulWidget {
-  const Cadastroterapeuta({super.key});
+class TelaCadastroTerapeuta extends StatefulWidget {
+  const TelaCadastroTerapeuta({super.key});
   @override
-  State<Cadastroterapeuta> createState() => _CadastroterapeutaState();
+  State<TelaCadastroTerapeuta> createState() => _TelaCadastroTerapeutaState();
 }
 
-class _CadastroterapeutaState extends State<Cadastroterapeuta> {
+class _TelaCadastroTerapeutaState extends State<TelaCadastroTerapeuta> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nomeController = TextEditingController();
@@ -146,7 +146,7 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
                 final nomePath = '${directory.path}/nome.txt';
                 final file3 = File(nomePath);
                 await file3.writeAsString(nome);
-                irPara(context, MyHomePage());
+                irPara(context, TelaCadastroTerapeuta2());
               } else{
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Email ou senha inválidos!"))
@@ -162,7 +162,7 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
         )
       )
     ),
-        child: Text("Cadastrar",
+        child: Text("Continuar",
         textAlign: TextAlign.center,
         style: style.copyWith(color:Colors.black, fontWeight: FontWeight.bold)
           ),
@@ -171,6 +171,7 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
     );
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body:Container(
         width: currentWidth,
         height: currentHeight,
@@ -214,7 +215,7 @@ class _CadastroterapeutaState extends State<Cadastroterapeuta> {
                   child: Text(
                     "Logar", 
                     style: TextStyle(
-                      color: const Color.fromARGB(255, 255, 230, 0), 
+                      color: const Color.fromARGB(255, 0, 51, 0), 
                       fontWeight: FontWeight.bold
                     )
                   )
