@@ -49,6 +49,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
         children: [
           CircleAvatar(
             radius: 50,
+            backgroundColor: Colors.grey,
             backgroundImage: AssetImage('imagens/adicionarFoto.webp'),
           ),
           SizedBox(height: 16),
