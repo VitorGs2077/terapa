@@ -4,5 +4,7 @@
         "plaintext": false,
         "markdown": false,
         "scminput": false
-    }
+    },
+    "codetogether.virtualCursorJoin": "ownVirtualCursor",
+    "codetogether.virtualCursorRemember": true
 }
