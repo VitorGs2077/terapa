@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:terapa/componentes/_func.dart';
 import 'package:terapa/componentes/_telas_basicas.dart';
+import 'package:terapa/telas/tela_chatDE_VDD.dart';
 
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
@@ -104,6 +106,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   ElevatedButton.icon(
                     onPressed: () {
                       print("clicou no botao de chat");
+                      irPara(context, TelaChat());
                     },
                     icon: Icon(Icons.chat),
                     label: Text("Iniciar Chat"),
