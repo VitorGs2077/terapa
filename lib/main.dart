@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapa/telas/login.dart';
-import 'package:terapa/telas/perfil.dart';
 import 'package:terapa/telas/terapeuta.dart';
 
 // Tom azul: (158, 19, 130, 155)

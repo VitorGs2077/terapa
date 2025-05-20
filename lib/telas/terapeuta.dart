@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/componentes/_telas_basicas.dart';
-import 'package:terapa/telas/login.dart';
 
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
