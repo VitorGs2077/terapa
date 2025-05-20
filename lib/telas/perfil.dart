@@ -5,6 +5,7 @@ import 'package:terapa/telas/inf.dart';
 import 'package:terapa/telas/login.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class TelaPerfil extends StatefulWidget {
   const TelaPerfil({super.key});
@@ -14,6 +15,18 @@ class TelaPerfil extends StatefulWidget {
 }
 
 class _TelaPerfilState extends State<TelaPerfil> {
+File? _selectedImage;
+
+Future<void> _pickImage() async {
+  final picker = ImagePicker();
+  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+  if (pickedFile != null) {
+    setState(() {
+      _selectedImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +53,28 @@ class _TelaPerfilState extends State<TelaPerfil> {
           return const Center(child: Text("Erro ao ler nome do usuário"));
         }
 
+        final fotoDePerfil = GestureDetector(
+      onTap: _pickImage,
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(61, 19, 130, 155),
+            Color.fromARGB(104, 108, 171, 124)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight
+          )
+        ),
+        child: CircleAvatar(
+          radius: 50,
+          backgroundColor: Colors.transparent,
+          backgroundImage: _selectedImage != null
+              ? FileImage(_selectedImage!)
+              : AssetImage('imagens/adicionarFoto.webp') as ImageProvider,
+        ),
+      ),
+    );
+
         final nomeUsuario = nomeSnapshot.data!;
         return Scaffold(
       backgroundColor: Colors.white,
@@ -47,10 +82,20 @@ class _TelaPerfilState extends State<TelaPerfil> {
       body: Column( 
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage('imagens/adicionarFoto.webp'),
-          ),
+          // Container(
+          //   padding: const EdgeInsets.all(16),
+          //   decoration: BoxDecoration(
+          //         gradient: const LinearGradient(
+          //           colors: [
+          //             Color.fromARGB(61, 19, 130, 155),
+          //             Color.fromARGB(104, 108, 171, 124)
+          //           ],
+          //           begin: Alignment.topLeft,
+          //           end: Alignment.bottomRight),
+          //         borderRadius: BorderRadius.circular(100)),
+          
+          // ),
+          fotoDePerfil,
           SizedBox(height: 16),
           Text(
             nomeUsuario,

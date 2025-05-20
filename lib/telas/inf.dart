@@ -52,9 +52,10 @@ class _TelaInfState extends State<TelaInf> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage('imagens/terapeuta.jpg'),
-              ),
+                  backgroundColor: Colors.blue,
+                  radius: 50,
+                  backgroundImage: AssetImage('imagens/terapeuta.jpg'),
+                ),
               const SizedBox(height: 16),
               Text(
                 nomeUsuario,
@@ -89,11 +90,8 @@ class _TelaInfState extends State<TelaInf> {
                     ),
                     IconButton(onPressed: (){}, icon: Icon(Icons.edit, size: 20,))
                   ]
-                 
                 ),
-               
               ),
-              
               ListTile(
                 leading: const Icon(Icons.lock, size: 32),
                 title: Row(

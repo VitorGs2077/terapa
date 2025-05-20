@@ -112,6 +112,7 @@ class _TelaCadastroTerapeutaState extends State<TelaCadastroTerapeuta> {
       onTap: _pickImage,
       child: Container(
         decoration: BoxDecoration(
+          shape: BoxShape.circle,
           gradient: LinearGradient(colors: [
             Color.fromARGB(61, 19, 130, 155),
             Color.fromARGB(104, 108, 171, 124)],
@@ -120,6 +121,7 @@ class _TelaCadastroTerapeutaState extends State<TelaCadastroTerapeuta> {
           )
         ),
         child: CircleAvatar(
+          backgroundColor: Color.fromARGB(100, 255, 255, 255),
           radius: currentWidth * 0.2,
           backgroundImage: _selectedImage != null
               ? FileImage(_selectedImage!)

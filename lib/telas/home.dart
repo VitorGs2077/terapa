@@ -54,14 +54,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: FractionallySizedBox( 
                       child: Center(
                         child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Para começar, escolha um profissional encontrado em sua área",
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontFamily: "Verdana"
-                                ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(61, 19, 130, 155),
+                            Color.fromARGB(104, 108, 171, 124)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Para começar, escolha um profissional encontrado em sua área",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: "Verdana"
+                                  ),
+                              ),
                             ),
                           )
                         )),
@@ -77,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     margin: EdgeInsets.all(10),
                     child: Container(
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
                         gradient: LinearGradient(
                           colors: [
                             Color.fromARGB(61, 19, 130, 155),
@@ -90,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         leading: Icon(Icons.person_2_outlined),
                         title: Text('Terapeuta ${index + 1}'),
                         subtitle: Text('Rua Canela ${index + 1}'),
-                        trailing: Icon(Icons.arrow_forward, color: Colors.red,),
+                        trailing: Icon(Icons.arrow_forward, color: Colors.black,),
                         onTap: () {
                           irPara(context, TelaTerapeuta());
                         },
@@ -101,21 +114,37 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
                 ),
                 SizedBox(height: 30,),
-                ElevatedButton(
-                  onPressed: (){
-                    irPara(context, TelaPesquisa());
-                  }, 
-                  child:Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Color.fromARGB(61, 19, 130, 155),
-                        Color.fromARGB(104, 108, 171, 124)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight
-                    )
-                   ),
-                    child: Text("Procurando por mais opções? Aperte aqui!")
-                  ),
+                Container(
+                  decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(61, 19, 130, 155),
+                            Color.fromARGB(104, 108, 171, 124)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    ),
+                    onPressed: (){
+                      irPara(context, TelaPesquisa());
+                    }, 
+                    child:Text("Procurando por mais opções? Aperte aqui!", 
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Verdana",
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ),
+                ),
                 )
               ]
             ),

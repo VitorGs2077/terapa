@@ -49,7 +49,7 @@ Widget bottomUserBar(context, nomeUsuario){
             },
             child: Icon(Icons.home, color: Colors.white),
           ),
-          label: 'Home',
+        label: "Início",
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
@@ -58,9 +58,7 @@ Widget bottomUserBar(context, nomeUsuario){
             },
             child: Icon(Icons.chat, color: Colors.white),
           ),
-          
-          
-          label: 'Papo Cabeça',
+          label: "Papo Cabeça",
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
@@ -69,7 +67,7 @@ Widget bottomUserBar(context, nomeUsuario){
             },
             child: Icon(Icons.search, color: Colors.white),
           ),
-          label: 'Pesquisa',
+          label: "Pesquisar",
         ),
         BottomNavigationBarItem(
           icon: GestureDetector(
@@ -78,7 +76,7 @@ Widget bottomUserBar(context, nomeUsuario){
             },
             child: Icon(Icons.person, color: Colors.white),
           ),
-          label: "$nomeUsuario",
+          label: nomeUsuario,
           ),
         ],
       ),
