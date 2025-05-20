@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terapa/componentes/_telas_basicas.dart';
@@ -6,8 +7,8 @@ import 'package:terapa/telas/login.dart';
 // Tom azul: (158, 19, 130, 155)
 // Tom verde: (237, 108, 171, 124)
 
-class Chat extends StatelessWidget {
-  const Chat({super.key});
+class Pesquisa extends StatelessWidget {
+  const Pesquisa({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +22,16 @@ class Chat extends StatelessWidget {
     );
     }
   }
-class TelaChat extends StatefulWidget {
-  const TelaChat({super.key});
+class ChatTerapeuta extends StatefulWidget {
+  const ChatTerapeuta({super.key});
 
   @override
-  State<TelaChat> createState() => _TelaChatState();
+  State<ChatTerapeuta> createState() => _ChatTerapeutaState();
 }
-class _TelaChatState extends State<TelaChat> {
+class _ChatTerapeutaState extends State<ChatTerapeuta> {
   get icon => null;
   @override
   Widget build(BuildContext context) {
-    final currentHeight = MediaQuery.of(context).size.height;
-    final _mensagemController = TextEditingController();
     return FutureBuilder<Directory>(
       future: getApplicationDocumentsDirectory(),
       builder: (context, snapshot) {
@@ -79,44 +78,6 @@ class _TelaChatState extends State<TelaChat> {
                 ),
                 style: TextStyle(color: Colors.white),
               ),
-            ),
-            body: Scaffold(
-              body: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                    height: currentHeight * 0.1,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(158, 19, 130, 155),
-                          Color.fromARGB(237, 108, 171, 124),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
-                    child: TextField(
-                      controller: _mensagemController,
-                      decoration: InputDecoration(
-                        hintText: 'Digite sua mensagem',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.send),
-                          onPressed: () async {
-                            String mensagem = _mensagemController.text;
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(mensagem)),);
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
             ),
             bottomNavigationBar: bottomUserBar(context, nomeUsuario)
             );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:terapa/telas/login.dart';
+import 'package:terapa/telas/tela_chatDE_VDD.dart';
 import 'package:terapa/telas/terapeuta.dart';
 
 // Tom azul: (158, 19, 130, 155)
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
-      home: Terapeuta()
+      home: TelaLogin()
     );
   }
 }

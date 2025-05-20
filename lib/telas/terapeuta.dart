@@ -106,7 +106,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   ElevatedButton.icon(
                     onPressed: () {
                       print("clicou no botao de chat");
-                      irPara(context, TelaChat());
+                      irPara(context, ChatTerapeuta());
                     },
                     icon: Icon(Icons.chat),
                     label: Text("Iniciar Chat"),
