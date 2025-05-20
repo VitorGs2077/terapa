@@ -90,11 +90,8 @@ class _TelaInfState extends State<TelaInf> {
                     ),
                     IconButton(onPressed: (){}, icon: Icon(Icons.edit, size: 20,))
                   ]
-                 
                 ),
-               
               ),
-              
               ListTile(
                 leading: const Icon(Icons.lock, size: 32),
                 title: Row(

@@ -17,7 +17,7 @@ class Terapeuta extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
-      home: TelaLogin(),
+      home: TelaTerapeuta(),
     );
     }
   }
@@ -31,6 +31,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
   get icon => null;
   @override
   Widget build(BuildContext context) {
+    
     final currentHeight = MediaQuery.of(context).size.height;
     //final currentWidth = MediaQuery.of(context).size.width;
     return FutureBuilder<Directory>(
@@ -58,6 +59,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             appBar: AppBar(
+              centerTitle: true,
               flexibleSpace: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -70,7 +72,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   ),
                 ),
               ),
-              title: Text("perfil do terapeuta",
+              title: Text("Perfil do Terapeuta",
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -80,11 +82,11 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('imagens/adicionarFoto.webp'), // aq tem q colocar a imagem do terapeuta
+                    backgroundImage: AssetImage('imagens/deni.jpeg'),
                   ),
                   SizedBox(height: currentHeight * 0.05),
                   Text(
-                    "nome do terapeuta",
+                    "Denilson",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -92,7 +94,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                   ),
                   SizedBox(height: currentHeight * 0.05),
                   Text(
-                    "especialista em terapia",
+                    "Especialista em Terapia",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
@@ -105,7 +107,7 @@ class _TelaTerapeutaState extends State<TelaTerapeuta> {
                       print("clicou no botao de chat");
                     },
                     icon: Icon(Icons.chat),
-                    label: Text("iniciar chat"),
+                    label: Text("Iniciar Chat"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(158, 19, 130, 155),
                       foregroundColor: Colors.white,

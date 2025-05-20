@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-void irPara(BuildContext context, Widget $widget) {
+void irPara(BuildContext context, Widget pagina) {
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => $widget),
+    MaterialPageRoute(builder: (context) => pagina),
   );
 }

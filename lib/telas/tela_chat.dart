@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:terapa/componentes/_func.dart';
 import 'package:terapa/componentes/_telas_basicas.dart';
+import 'package:terapa/telas/terapeuta.dart';
 
 class TelaChat extends StatefulWidget {
   const TelaChat({super.key});
@@ -49,6 +51,9 @@ class _TelaChatState extends State<TelaChat> {
                   leading: Icon(Icons.person),
                   title: Center(child: Text("Terapeuta ${index + 1}")),
                   trailing: Icon(Icons.chat_bubble),
+                  onTap: () {
+                    irPara(context, Terapeuta());
+                  },
                 );
               }
               
